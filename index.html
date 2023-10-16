@@ -170,7 +170,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2023-10-16 13:53:46 / Modified: 13:54:46" itemprop="dateCreated datePublished" datetime="2023-10-16T13:53:46+08:00">2023-10-16</time>
+              <time title="Created: 2023-10-16 13:53:46 / Modified: 13:58:47" itemprop="dateCreated datePublished" datetime="2023-10-16T13:53:46+08:00">2023-10-16</time>
             </span>
 
           
@@ -184,7 +184,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="将-根目录从标准分区迁移到LVM并扩容磁盘"><a href="#将-根目录从标准分区迁移到LVM并扩容磁盘" class="headerlink" title="将&#x2F;根目录从标准分区迁移到LVM并扩容磁盘"></a><center>将&#x2F;根目录从标准分区迁移到LVM并扩容磁盘</center></h1><h2 id="1、查看当前分区"><a href="#1、查看当前分区" class="headerlink" title="1、查看当前分区"></a>1、查看当前分区</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">当前/分区为100G。但是还有空余磁盘500G</span><br><span class="line">[root@localhost ~]# lsblk </span><br><span class="line">NAME   MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT</span><br><span class="line">sda      8:0    0  100G  0 disk </span><br><span class="line">├─sda1   8:1    0  500M  0 part /boot</span><br><span class="line">├─sda2   8:2    0   16G  0 part [SWAP]</span><br><span class="line">├─sda3   8:3    0   10G  0 part /home</span><br><span class="line">├─sda4   8:4    0    1K  0 part </span><br><span class="line">└─sda5   8:5    0 73.5G  0 part /</span><br><span class="line">sdb      8:16   0  200G  0 disk </span><br><span class="line">sr0     11:0    1 1024M  0 rom  </span><br></pre></td></tr></table></figure>
+          <h1 id="将-根目录从标准分区迁移到LVM并扩容磁盘"><a href="#将-根目录从标准分区迁移到LVM并扩容磁盘" class="headerlink" title="将&#x2F;根目录从标准分区迁移到LVM并扩容磁盘"></a>将&#x2F;根目录从标准分区迁移到LVM并扩容磁盘</h1><h2 id="1、查看当前分区"><a href="#1、查看当前分区" class="headerlink" title="1、查看当前分区"></a>1、查看当前分区</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">当前/分区为100G。但是还有空余磁盘500G</span><br><span class="line">[root@localhost ~]# lsblk </span><br><span class="line">NAME   MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT</span><br><span class="line">sda      8:0    0  100G  0 disk </span><br><span class="line">├─sda1   8:1    0  500M  0 part /boot</span><br><span class="line">├─sda2   8:2    0   16G  0 part [SWAP]</span><br><span class="line">├─sda3   8:3    0   10G  0 part /home</span><br><span class="line">├─sda4   8:4    0    1K  0 part </span><br><span class="line">└─sda5   8:5    0 73.5G  0 part /</span><br><span class="line">sdb      8:16   0  200G  0 disk </span><br><span class="line">sr0     11:0    1 1024M  0 rom  </span><br></pre></td></tr></table></figure>
 
 
 

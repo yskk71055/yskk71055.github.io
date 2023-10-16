@@ -159,7 +159,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2023/10/16/%E5%B0%86%E6%A0%B9%E7%9B%AE%E5%BD%95%E4%BB%8E%E6%A0%87%E5%87%86%E5%88%86%E5%8C%BA%E8%BF%81%E7%A7%BB%E5%88%B0LVM%E5%B9%B6%E6%89%A9%E5%AE%B9%E7%A3%81%E7%9B%98/" class="post-title-link" itemprop="url">Untitled</a>
+            <a href="/2023/10/16/%E5%B0%86%E6%A0%B9%E7%9B%AE%E5%BD%95%E4%BB%8E%E6%A0%87%E5%87%86%E5%88%86%E5%8C%BA%E8%BF%81%E7%A7%BB%E5%88%B0LVM%E5%B9%B6%E6%89%A9%E5%AE%B9%E7%A3%81%E7%9B%98/" class="post-title-link" itemprop="url">将/根目录从Standard Partition迁移到LVM并扩容</a>
         </h2>
 
         <div class="post-meta">
@@ -170,7 +170,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2023-10-16 13:53:46 / Modified: 13:58:47" itemprop="dateCreated datePublished" datetime="2023-10-16T13:53:46+08:00">2023-10-16</time>
+              <time title="Created: 2023-10-16 13:53:46 / Modified: 14:31:39" itemprop="dateCreated datePublished" datetime="2023-10-16T13:53:46+08:00">2023-10-16</time>
             </span>
 
           
@@ -184,7 +184,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="将-根目录从标准分区迁移到LVM并扩容磁盘"><a href="#将-根目录从标准分区迁移到LVM并扩容磁盘" class="headerlink" title="将&#x2F;根目录从标准分区迁移到LVM并扩容磁盘"></a>将&#x2F;根目录从标准分区迁移到LVM并扩容磁盘</h1><h2 id="1、查看当前分区"><a href="#1、查看当前分区" class="headerlink" title="1、查看当前分区"></a>1、查看当前分区</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">当前/分区为100G。但是还有空余磁盘500G</span><br><span class="line">[root@localhost ~]# lsblk </span><br><span class="line">NAME   MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT</span><br><span class="line">sda      8:0    0  100G  0 disk </span><br><span class="line">├─sda1   8:1    0  500M  0 part /boot</span><br><span class="line">├─sda2   8:2    0   16G  0 part [SWAP]</span><br><span class="line">├─sda3   8:3    0   10G  0 part /home</span><br><span class="line">├─sda4   8:4    0    1K  0 part </span><br><span class="line">└─sda5   8:5    0 73.5G  0 part /</span><br><span class="line">sdb      8:16   0  200G  0 disk </span><br><span class="line">sr0     11:0    1 1024M  0 rom  </span><br></pre></td></tr></table></figure>
+          <h1 id="将-根目录从Standard-Partition迁移到LVM并扩容"><a href="#将-根目录从Standard-Partition迁移到LVM并扩容" class="headerlink" title="将&#x2F;根目录从Standard Partition迁移到LVM并扩容"></a>将&#x2F;根目录从Standard Partition迁移到LVM并扩容</h1><h2 id="1、查看当前分区"><a href="#1、查看当前分区" class="headerlink" title="1、查看当前分区"></a>1、查看当前分区</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">当前/分区为100G。但是还有空余磁盘500G</span><br><span class="line">[root@localhost ~]# lsblk </span><br><span class="line">NAME   MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT</span><br><span class="line">sda      8:0    0  100G  0 disk </span><br><span class="line">├─sda1   8:1    0  500M  0 part /boot</span><br><span class="line">├─sda2   8:2    0   16G  0 part [SWAP]</span><br><span class="line">├─sda3   8:3    0   10G  0 part /home</span><br><span class="line">├─sda4   8:4    0    1K  0 part </span><br><span class="line">└─sda5   8:5    0 73.5G  0 part /</span><br><span class="line">sdb      8:16   0  200G  0 disk </span><br><span class="line">sr0     11:0    1 1024M  0 rom  </span><br></pre></td></tr></table></figure>
 
 
 

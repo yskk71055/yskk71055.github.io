@@ -20,28 +20,32 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta property="og:type" content="website">
+  <meta name="description" content="将&#x2F;根目录从标准分区迁移到LVM并扩容磁盘1、查看当前分区1234567891011当前&#x2F;分区为100G。但是还有空余磁盘500G[root@localhost ~]# lsblk NAME   MAJ:MIN RM  SIZE RO TYPE MOUNTPOINTsda      8:0    0  100G  0 disk ├─sda1   8:1    0  500M  0 par">
+<meta property="og:type" content="article">
 <meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://example.com/index.html">
+<meta property="og:url" content="http://example.com/2023/10/16/%E5%B0%86%E6%A0%B9%E7%9B%AE%E5%BD%95%E4%BB%8E%E6%A0%87%E5%87%86%E5%88%86%E5%8C%BA%E8%BF%81%E7%A7%BB%E5%88%B0LVM%E5%B9%B6%E6%89%A9%E5%AE%B9%E7%A3%81%E7%9B%98/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="将&#x2F;根目录从标准分区迁移到LVM并扩容磁盘1、查看当前分区1234567891011当前&#x2F;分区为100G。但是还有空余磁盘500G[root@localhost ~]# lsblk NAME   MAJ:MIN RM  SIZE RO TYPE MOUNTPOINTsda      8:0    0  100G  0 disk ├─sda1   8:1    0  500M  0 par">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-10-16T05:53:46.440Z">
+<meta property="article:modified_time" content="2023-10-16T05:54:46.991Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://example.com/">
+<link rel="canonical" href="http://example.com/2023/10/16/%E5%B0%86%E6%A0%B9%E7%9B%AE%E5%BD%95%E4%BB%8E%E6%A0%87%E5%87%86%E5%88%86%E5%8C%BA%E8%BF%81%E7%A7%BB%E5%88%B0LVM%E5%B9%B6%E6%89%A9%E5%AE%B9%E7%A3%81%E7%9B%98/">
 
 
 <script id="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome : true,
-    isPost : false,
+    isHome : false,
+    isPost : true,
     lang   : 'en'
   };
 </script>
 
-  <title>Hexo</title>
+  <title> | Hexo</title>
   
 
 
@@ -139,9 +143,10 @@
         <div class="content-wrap">
           
 
-          <div class="content index posts-expand">
+          <div class="content post posts-expand">
             
-      
+
+    
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
@@ -157,10 +162,9 @@
       <meta itemprop="name" content="Hexo">
     </span>
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
+        <h1 class="post-title" itemprop="name headline">
           
-            <a href="/2023/10/16/%E5%B0%86%E6%A0%B9%E7%9B%AE%E5%BD%95%E4%BB%8E%E6%A0%87%E5%87%86%E5%88%86%E5%8C%BA%E8%BF%81%E7%A7%BB%E5%88%B0LVM%E5%B9%B6%E6%89%A9%E5%AE%B9%E7%A3%81%E7%9B%98/" class="post-title-link" itemprop="url">Untitled</a>
-        </h2>
+        </h1>
 
         <div class="post-meta">
             <span class="post-meta-item">
@@ -184,7 +188,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="将-根目录从标准分区迁移到LVM并扩容磁盘"><a href="#将-根目录从标准分区迁移到LVM并扩容磁盘" class="headerlink" title="将&#x2F;根目录从标准分区迁移到LVM并扩容磁盘"></a><center>将&#x2F;根目录从标准分区迁移到LVM并扩容磁盘</center></h1><h2 id="1、查看当前分区"><a href="#1、查看当前分区" class="headerlink" title="1、查看当前分区"></a>1、查看当前分区</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">当前/分区为100G。但是还有空余磁盘500G</span><br><span class="line">[root@localhost ~]# lsblk </span><br><span class="line">NAME   MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT</span><br><span class="line">sda      8:0    0  100G  0 disk </span><br><span class="line">├─sda1   8:1    0  500M  0 part /boot</span><br><span class="line">├─sda2   8:2    0   16G  0 part [SWAP]</span><br><span class="line">├─sda3   8:3    0   10G  0 part /home</span><br><span class="line">├─sda4   8:4    0    1K  0 part </span><br><span class="line">└─sda5   8:5    0 73.5G  0 part /</span><br><span class="line">sdb      8:16   0  200G  0 disk </span><br><span class="line">sr0     11:0    1 1024M  0 rom  </span><br></pre></td></tr></table></figure>
+        <h1 id="将-根目录从标准分区迁移到LVM并扩容磁盘"><a href="#将-根目录从标准分区迁移到LVM并扩容磁盘" class="headerlink" title="将&#x2F;根目录从标准分区迁移到LVM并扩容磁盘"></a><center>将&#x2F;根目录从标准分区迁移到LVM并扩容磁盘</center></h1><h2 id="1、查看当前分区"><a href="#1、查看当前分区" class="headerlink" title="1、查看当前分区"></a>1、查看当前分区</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">当前/分区为100G。但是还有空余磁盘500G</span><br><span class="line">[root@localhost ~]# lsblk </span><br><span class="line">NAME   MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT</span><br><span class="line">sda      8:0    0  100G  0 disk </span><br><span class="line">├─sda1   8:1    0  500M  0 part /boot</span><br><span class="line">├─sda2   8:2    0   16G  0 part [SWAP]</span><br><span class="line">├─sda3   8:3    0   10G  0 part /home</span><br><span class="line">├─sda4   8:4    0    1K  0 part </span><br><span class="line">└─sda5   8:5    0 73.5G  0 part /</span><br><span class="line">sdb      8:16   0  200G  0 disk </span><br><span class="line">sr0     11:0    1 1024M  0 rom  </span><br></pre></td></tr></table></figure>
 
 
 
@@ -198,148 +202,30 @@
 <h2 id="3、迁移文件并更新GRUB配置"><a href="#3、迁移文件并更新GRUB配置" class="headerlink" title="3、迁移文件并更新GRUB配置"></a>3、迁移文件并更新GRUB配置</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">临时挂载新的逻辑卷：</span><br><span class="line">[root@localhost ~]# mkdir /mnt/newroot</span><br><span class="line">[root@localhost ~]# mount /dev/vg/lv /mnt/newroot/</span><br><span class="line"></span><br><span class="line">复制现有根文件系统到新的逻辑卷：</span><br><span class="line">[root@localhost ~]# rsync -avx / /mnt/newroot</span><br><span class="line">等待文件迁移完毕</span><br><span class="line"></span><br><span class="line">更新 /etc/fstab，以便在引导时挂载新的逻辑卷。打开 /mnt/newroot/etc/fstab 并添加以下行：</span><br><span class="line">[root@localhost ~]# vi /mnt/newroot/etc/fstab </span><br><span class="line">/dev/vg/lv  /       xfs    defaults      0 1</span><br><span class="line"></span><br><span class="line">更新GRUB配置</span><br><span class="line">mount --bind /dev /mnt/newroot/dev</span><br><span class="line">mount --bind /proc /mnt/newroot/proc</span><br><span class="line">mount --bind /sys /mnt/newroot/sys</span><br><span class="line">chroot /mnt/newroot</span><br><span class="line">更新引导加载程序：</span><br><span class="line">在 CentOS 7 中，您可以使用以下命令重新生成 GRUB 配置文件：</span><br><span class="line">grub2-mkconfig -o /boot/grub2/grub.cfg</span><br><span class="line">或者如果您的系统使用 UEFI 引导：</span><br><span class="line">grub2-mkconfig -o /boot/efi/EFI/centos/grub.cfg</span><br><span class="line">重启系统，确保一切正常。</span><br><span class="line">exit</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 
-      
     </div>
 
     
     
     
+
       <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2023/10/13/%E5%8F%91%E5%B8%83%E7%AC%AC%E4%B8%80%E6%9D%A1%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/">
+        
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="John Doe">
-      <meta itemprop="description" content="">
-    </span>
 
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2023/10/13/%E5%8F%91%E5%B8%83%E7%AC%AC%E4%B8%80%E6%9D%A1%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/" class="post-title-link" itemprop="url">发布第一条个人博客</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2023-10-13 09:36:25" itemprop="dateCreated datePublished" datetime="2023-10-13T09:36:25+08:00">2023-10-13</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          
-      
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2023/10/13/%E5%8F%91%E5%B8%83%E7%AC%AC%E4%B8%80%E6%9D%A1%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/" rel="prev" title="发布第一条个人博客">
+      <i class="fa fa-chevron-left"></i> 发布第一条个人博客
+    </a></div>
+      <div class="post-nav-item"></div>
     </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
       </footer>
+    
   </article>
   
   
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2023/10/13/hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="John Doe">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2023/10/13/hello-world/" class="post-title-link" itemprop="url">Hello World</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2023-10-13 09:29:15" itemprop="dateCreated datePublished" datetime="2023-10-13T09:29:15+08:00">2023-10-13</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-
   
 
 
@@ -392,6 +278,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%B0%86-%E6%A0%B9%E7%9B%AE%E5%BD%95%E4%BB%8E%E6%A0%87%E5%87%86%E5%88%86%E5%8C%BA%E8%BF%81%E7%A7%BB%E5%88%B0LVM%E5%B9%B6%E6%89%A9%E5%AE%B9%E7%A3%81%E7%9B%98"><span class="nav-number">1.</span> <span class="nav-text">将&#x2F;根目录从标准分区迁移到LVM并扩容磁盘</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1%E3%80%81%E6%9F%A5%E7%9C%8B%E5%BD%93%E5%89%8D%E5%88%86%E5%8C%BA"><span class="nav-number">1.1.</span> <span class="nav-text">1、查看当前分区</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2%E3%80%81%E5%9C%A8-sdb-%E7%A3%81%E7%9B%98%E4%B8%8A%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA%E6%96%B0%E7%9A%84%E5%88%86%E5%8C%BA"><span class="nav-number">1.2.</span> <span class="nav-text">2、在 sdb 磁盘上创建一个新的分区</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3%E3%80%81%E5%88%9B%E5%BB%BALVM"><span class="nav-number">1.3.</span> <span class="nav-text">3、创建LVM</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3%E3%80%81%E8%BF%81%E7%A7%BB%E6%96%87%E4%BB%B6%E5%B9%B6%E6%9B%B4%E6%96%B0GRUB%E9%85%8D%E7%BD%AE"><span class="nav-number">1.4.</span> <span class="nav-text">3、迁移文件并更新GRUB配置</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
